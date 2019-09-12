@@ -1,0 +1,64 @@
+ <beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:encryption="http://www.jasypt.org/schema/encryption"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.jasypt.org/schema/encryption  
+	http://www.jasypt.org/schema/encryption/jasypt-spring31-encryption-1.xsd">
+	<annotation-driven>
+		<message-converters>
+			<beans:bean
+				class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			<beans:bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter ">
+				<beans:property name="supportedMediaTypes">
+					<beans:list>
+						<beans:value>application/json;charset=UTF-8</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+			<beans:bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<beans:property name="supportedMediaTypes">
+					<beans:list>
+						<beans:value>text/plain;charset=UTF-8</beans:value>
+						<beans:value>text/html;charset=UTF-8</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+			<beans:bean
+				class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+			<beans:bean
+				class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter" />
+		</message-converters>
+	</annotation-driven>
+
+	<!-- annotation的方法映射适配器 -->
+	<beans:bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<beans:bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<beans:bean class="uefa.util.SpringContextUtil"
+		scope="singleton"></beans:bean>
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize">
+			<beans:value>5120000</beans:value>
+		</beans:property>
+		<beans:property name="maxInMemorySize">
+			<beans:value>5120000</beans:value>
+		</beans:property>
+		<beans:property name="defaultEncoding">
+			<beans:value>utf-8</beans:value>
+		</beans:property>
+	</beans:bean>
+
+	<context:component-scan base-package="uefa" />
+</beans:beans>

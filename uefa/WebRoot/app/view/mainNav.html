@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mainNav.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+  </head>
+  
+  <body>
+	<div class = "head_nav">
+		<ul class = "nav">
+			<li class="nav-item"><a ng-href="#/mainNav/news"> News </a></li>
+			<li class="nav-item"><a data-ng-href="#/mainNav/groups"> Groups </a></li>
+			<li class="nav-item"><a ng-href="#/mainNav/games"> Games </a></li>
+			<li class="nav-item"><a ng-href="#/mainNav/db"> DB </a></li>
+		</ul>
+	</div>
+	
+	<div class = "content_block">
+		<div class = "container-fluid">
+			<div data-ui-view="applyContent"></div>
+		</div>		
+	</div>
+	
+  </body>
+</html>

@@ -1,0 +1,21 @@
+#MyEclipse Hibernate Properties
+#Wed Sep 04 12:13:20 EDT 2019
+genBasicCompId=true
+sessionFactoryName=uefa.model.HibernateSessionFactory
+profile=
+daoSFId=
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/uefa/src/hibernate.cfg.xml
+createConfigFile=true
+baseDaoClass=BaseHibernateDAO
