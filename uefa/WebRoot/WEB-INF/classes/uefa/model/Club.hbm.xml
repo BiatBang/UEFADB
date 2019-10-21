@@ -40,12 +40,12 @@
                 <comment>club statium capacity</comment>
             </column>
         </property>
-        <property name="country" type="java.lang.Integer">
+        <property name="country" type="java.lang.String">
             <column name="country" not-null="true">
                 <comment>club country</comment>
             </column>
         </property>
-        <property name="countryIcon" type="java.lang.Integer">
+        <property name="countryIcon" type="java.lang.String">
             <column name="countryIcon" not-null="true">
                 <comment>club country icon</comment>
             </column>

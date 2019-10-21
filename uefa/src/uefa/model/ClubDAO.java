@@ -6,6 +6,9 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import sun.jvm.hotspot.oops.Oop;
 
 /**
  * A data access object (DAO) providing persistence and search support for Club
@@ -18,6 +21,7 @@ import org.slf4j.LoggerFactory;
  * @see uefa.model.Club
  * @author MyEclipse Persistence Tools
  */
+@Repository
 public class ClubDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory.getLogger(ClubDAO.class);
 	// property constants
@@ -129,6 +133,7 @@ public class ClubDAO extends BaseHibernateDAO {
 		try {
 			String queryString = "from Club";
 			Query queryObject = getSession().createQuery(queryString);
+			for(Object o: queryObject.list()) System.out.println(o.toString());
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);

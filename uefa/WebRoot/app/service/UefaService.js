@@ -15,12 +15,13 @@ uefa.constant('uefaServiceConfig', {
 				var deffered = $q.defer();//内置服务 同步请求数据
 				$http({
 					// json object
-					method: 'POST',
-					dataType: 'json',
-					contentType: "application/json; charset=UTF-8",
+					method: 'GET',
+					dataType: "json",
+					contentType: 'application/json; charset=UTF-8',
 					url: uefaServiceConfig.urls.queryClubs,
 				}).then(function successCallback(response){
-					alert(response.msg);
+					var msg = response.msg;
+					console.log(response.data.msg);
 					deffered.resolve(response);
 				}, function errorCallback(response){
 					deffered.reject(response);

@@ -16,14 +16,14 @@ dbCtrl.controller("dbController", [
 		
 		$scope.queryClubs = function(){
 			uefaService.queryClubs().then(function(response){
-				if(response.success == true){
-					$scope.msg = response.msg;
-					
+				if(response.data.success == true){
+					$scope.msg = response.data.msg;
+					alert($scope.msg);
+					console.log($scope.clubs);
 				}
 			}, function(code){
 				throw (code);
 			});
-			alert($scope.msg);
 		}
 		
 		var init = function(){
