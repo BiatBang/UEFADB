@@ -13,13 +13,22 @@ dbCtrl.controller("dbController", [
 	function($scope, $stateParams, $location, $http, uefaService){
 		$scope.clubs = [];
 		$scope.msg = "";
+		$scope.leagueList = [];
+		$scope.league = "All";
 		
 		$scope.queryClubs = function(){
 			uefaService.queryClubs().then(function(response){
 				if(response.data.success == true){
-					$scope.msg = response.data.msg;
-					alert($scope.msg);
-					console.log($scope.clubs);
+				}
+			}, function(code){
+				throw (code);
+			});
+		}
+		
+		$scope.queryClubsByLeague = function(league){
+			uefaService.queryClubsByLeague(league).then(function(response){
+				if(response.data.success == true){
+					console.log("caonima " + response.data.clubs);
 				}
 			}, function(code){
 				throw (code);
@@ -27,9 +36,22 @@ dbCtrl.controller("dbController", [
 		}
 		
 		var init = function(){
-			$scope.queryClubs();
+			$scope.queryClubs($scope.league);			
+			$scope.leagueList = [
+				{name: 'All'},
+				{name: 'La Liga'},
+				{name: 'Premier League'}
+			];
+			
 			//alert("db hello");
 		};
 		
 		init();
+		
+		// some listeners
+		var leagueSelector = document.getElementById("leagueSelector");
+		leagueSelector.addEventListener("change", function() {
+			$scope.league = leagueSelector.value.substring(7);
+			$scope.queryClubsByLeague($scope.league);
+		});
 	}]);

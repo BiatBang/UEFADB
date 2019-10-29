@@ -15,8 +15,8 @@ public class Club implements java.io.Serializable {
 	private String stadium;
 	private Integer estyr;
 	private Integer capacity;
-	private String country;
-	private String countryIcon;
+	private String league;
+	private String leagueIcon;
 
 	// Constructors
 
@@ -25,17 +25,16 @@ public class Club implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Club(String name, String icon, String city, String stadium,
-			Integer estyr, Integer capacity, String country,
-			String countryIcon) {
+	public Club(String name, String icon, String city, String stadium, Integer estyr, Integer capacity, String league,
+			String leagueIcon) {
 		this.name = name;
 		this.icon = icon;
 		this.city = city;
 		this.stadium = stadium;
 		this.estyr = estyr;
 		this.capacity = capacity;
-		this.country = country;
-		this.countryIcon = countryIcon;
+		this.league = league;
+		this.leagueIcon = leagueIcon;
 	}
 
 	// Property accessors
@@ -96,20 +95,20 @@ public class Club implements java.io.Serializable {
 		this.capacity = capacity;
 	}
 
-	public String getCountry() {
-		return this.country;
+	public String getLeague() {
+		return this.league;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setLeague(String league) {
+		this.league = league;
 	}
 
-	public String getCountryIcon() {
-		return this.countryIcon;
+	public String getLeagueIcon() {
+		return this.leagueIcon;
 	}
 
-	public void setCountryIcon(String countryIcon) {
-		this.countryIcon = countryIcon;
+	public void setLeagueIcon(String leagueIcon) {
+		this.leagueIcon = leagueIcon;
 	}
 
 }

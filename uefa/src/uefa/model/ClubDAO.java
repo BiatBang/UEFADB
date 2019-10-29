@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import sun.jvm.hotspot.oops.Oop;
-
 /**
  * A data access object (DAO) providing persistence and search support for Club
  * entities. Transaction control of the save(), update() and delete() operations
@@ -31,8 +29,8 @@ public class ClubDAO extends BaseHibernateDAO {
 	public static final String STADIUM = "stadium";
 	public static final String ESTYR = "estyr";
 	public static final String CAPACITY = "capacity";
-	public static final String COUNTRY = "country";
-	public static final String COUNTRY_ICON = "countryIcon";
+	public static final String LEAGUE = "league";
+	public static final String LEAGUE_ICON = "leagueIcon";
 
 	public void save(Club transientInstance) {
 		log.debug("saving Club instance");
@@ -70,10 +68,8 @@ public class ClubDAO extends BaseHibernateDAO {
 	public List findByExample(Club instance) {
 		log.debug("finding Club instance by example");
 		try {
-			List results = getSession().createCriteria("uefa.model.Club")
-					.add(Example.create(instance)).list();
-			log.debug("find by example successful, result size: "
-					+ results.size());
+			List results = getSession().createCriteria("uefa.model.Club").add(Example.create(instance)).list();
+			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -82,13 +78,13 @@ public class ClubDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Club instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding Club instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from Club as model where model."
-					+ propertyName + "= ?";
+			String queryString = "from Club as model where model." + propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
+			System.out.println("clubdao 86: " + queryObject.list().size());
+			System.out.println("clubdao 86: " + queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -120,12 +116,12 @@ public class ClubDAO extends BaseHibernateDAO {
 		return findByProperty(CAPACITY, capacity);
 	}
 
-	public List findByCountry(Object country) {
-		return findByProperty(COUNTRY, country);
+	public List findByLeague(Object league) {
+		return findByProperty(LEAGUE, league);
 	}
 
-	public List findByCountryIcon(Object countryIcon) {
-		return findByProperty(COUNTRY_ICON, countryIcon);
+	public List findByLeagueIcon(Object leagueIcon) {
+		return findByProperty(LEAGUE_ICON, leagueIcon);
 	}
 
 	public List findAll() {
@@ -133,7 +129,6 @@ public class ClubDAO extends BaseHibernateDAO {
 		try {
 			String queryString = "from Club";
 			Query queryObject = getSession().createQuery(queryString);
-			for(Object o: queryObject.list()) System.out.println(o.toString());
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);

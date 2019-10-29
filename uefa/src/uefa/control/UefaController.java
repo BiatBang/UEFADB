@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.sf.json.JSONObject;
@@ -37,7 +38,18 @@ public class UefaController {
 		model.put("success", true);
 		model.put("msg", "caonima");
 		model.put("clubs", JsonUtil.jsonArrayFromList(clubs));
-		System.out.println(model.get("msg"));
+		return model;
+	}
+	
+	@RequestMapping(value = "/queryClubsByLeague.do")
+	public @ResponseBody JSONObject queryClubsByLeague(HttpServletRequest request,
+			@RequestParam(value = "league", required = true) String league) throws Exception{
+		JSONObject model = new JSONObject();
+		System.out.println(league);
+		List<Club> clubs = uefaMngr.queryClubsByLeague(league);
+		System.out.println(JsonUtil.jsonArrayFromList(clubs));
+		model.put("success", true);
+		model.put("clubs", JsonUtil.jsonArrayFromList(clubs));
 		return model;
 	}
 }

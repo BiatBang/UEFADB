@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>db.html</title>
-	
-    <meta name="keywords" content="keyword1,keyword2,keyword3">
-    <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html; charset=UTF-8">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<head>
+<title>db.html</title>
 
-  </head>
-  
-  <body>
-    This is my DB page. <br>
-    {{msg}}
-  </body>
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+
+<body>
+	<div class="ui-form-item">
+		<select id="leagueSelector" ng-model="league" name="league"
+			ng-options="a.name as a.name for a in leagueList">
+		</select>
+	</div>
+</body>
 </html>
